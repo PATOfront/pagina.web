@@ -18,17 +18,21 @@
         <!-- ÍCONE NO TOPO DO CARD -->
         <div class="top-icon-wrapper">
             <div class="top-icon-circle">
-                <i class="fa-solid fa-lock"></i>
+           <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+   <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Mestre das Ofertas" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #0056b3; box-shadow: 0 0 20px rgba(7, 4, 170, 0.4);">
+</div>
+</div>
             </div>
         </div>
 
         <!-- BADGE VERMELHA -->
         <div class="badge">
-            <i class="fa-solid fa-volume-xmark"></i> DEIXE O GRUPO SILENCIOSO
+            <i class="fa-solid fa-volume-xmark"></i> DEIXE O GRUPO NO SILENCIOSO
         </div>
 
         <!-- TÍTULO E SUBTÍTULO -->
-        <h1 class="title">Garimpo de Ofertas & Cupons Exclusivos</h1>
+        <h1 class="title">Ofertas & Cupons Exclusivos</h1>
         <p class="subtitle">Economize diariamente em compras online. Receba cupons limitados e promoções diretamente no WhatsApp.</p>
 
         <!-- SEÇÃO DE MARCAS (MERCADO LIVRE, AMAZON, SHOPEE) LOGO ACIMA DO CRONÔMETRO -->
@@ -86,7 +90,7 @@
 
         <!-- BOTÃO COM INTEGRAÇÃO SQLITE -->
         <button onclick="registrarClique()" class="btn-whatsapp">
-            <i class="fa-brands fa-whatsapp"></i> ENTRAR NO GRUPO GRÁTIS
+            <i class="fa-brands fa-whatsapp"></i> ENTRAR NO GRUPO
         </button>
 
         <div class="footer-info">
