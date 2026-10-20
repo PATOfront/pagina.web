@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mestre das Ofertas / Grupo Vip</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- LUZES DE FUNDO COM 3 ORBES UNIFICADAS -->
+    <div class="glow-orb orb-blue-1"></div>
+    <div class="glow-orb orb-blue-2"></div>
+    <div class="glow-orb orb-blue-3"></div>
+
+    <div class="card-container">
+        <!-- ÍCONE NO TOPO DO CARD -->
+        <div class="top-icon-wrapper">
+            <div class="top-icon-circle">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+        </div>
+
+        <!-- BADGE VERMELHA -->
+        <div class="badge">
+            <i class="fa-solid fa-volume-xmark"></i> DEIXE O GRUPO SILENCIOSO
+        </div>
+
+        <!-- TÍTULO E SUBTÍTULO -->
+        <h1 class="title">Garimpo de Ofertas & Cupons Exclusivos</h1>
+        <p class="subtitle">Economize diariamente em compras online. Receba cupons limitados e promoções diretamente no WhatsApp.</p>
+
+        <!-- SEÇÃO DE MARCAS (MERCADO LIVRE, AMAZON, SHOPEE) LOGO ACIMA DO CRONÔMETRO -->
+        <div class="brands-wrapper">
+            <div class="brands-container">
+                <div class="brand-item" title="Mercado Livre">
+                    <i class="fa-solid fa-handshake ml-icon"></i>
+                    <span>Mercado Livre</span>
+                </div>
+                <span class="divider">|</span>
+                <div class="brand-item" title="Amazon">
+                    <i class="fa-brands fa-amazon amazon-icon"></i>
+                    <span>Amazon</span>
+                </div>
+                <span class="divider">|</span>
+                <div class="brand-item" title="Shopee">
+                    <i class="fa-solid fa-bag-shopping shopee-icon"></i>
+                    <span>Shopee</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRONÔMETRO REGRESSIVO INTEGRADO -->
+        <div class="countdown-box">
+            <span class="countdown-label"><i class="fa-solid fa-clock"></i> Vagas promocionais encerram em:</span>
+            <div id="countdown" class="countdown-timer">02:14:59</div>
+        </div>
+
+        <!-- LISTA DE BENEFÍCIOS -->
+        <div class="benefits-list">
+            <div class="benefit-item">
+                <i class="fa-solid fa-volume-xmark icon"></i>
+                <div>
+                    <strong>Sem Notificação Desnecessária</strong>
+                    <p>Apenas os administradores podem enviar links de ofertas.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="fa-solid fa-bolt icon"></i>
+                <div>
+                    <strong>Promoções e ofertas de Curta Duração</strong>
+                    <p>Pegue as ofertas antes que o estoque esgote.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="fa-solid fa-shield-halved icon"></i>
+                <div>
+                    <strong>Links 100% Seguros</strong>
+                    <p>Todas as lojas oficiais (Amazon, Mercado Livre, Shopee).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTÃO COM INTEGRAÇÃO SQLITE -->
+        <button onclick="registrarClique()" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> ENTRAR NO GRUPO GRÁTIS
+        </button>
+
+        <div class="footer-info">
+            <p><i class="fa-solid fa-lock"></i> Canal oficial e gratuito</p>
+        </div>
+    </div>
+
+    <!-- SCRIPT DO CRONÔMETRO E REGISTRO DE CLIQUES (INTACTO) -->
+    <script>
+        let tempoTotal = 2 * 3600 + 14 * 60 + 59;
+        const timerElement = document.getElementById("countdown");
+
+        setInterval(function () {
+            if (tempoTotal <= 0) return;
+            tempoTotal--;
+
+            let horas = Math.floor(tempoTotal / 3600);
+            let minutos = Math.floor((tempoTotal % 3600) / 60);
+            let segundos = tempoTotal % 60;
+
+            timerElement.textContent = 
+                String(horas).padStart(2, '0') + ":" + 
+                String(minutos).padStart(2, '0') + ":" + 
+                String(segundos).padStart(2, '0');
+        }, 1000);
+
+        function registrarClique() {
+            console.log("Registrando clique no banco SQLite...");
+            setTimeout(function() {
+                window.location.href = "/registrar-clique";
+            }, 300);
+        }
+    </script>
+</body>
+</html>
