@@ -10,14 +10,13 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px;        
     position: relative;
     overflow-x: hidden; 
     perspective: 1000px;
 }
-
 /* --- ORBES AZUIS UNIFICADAS (Mesmo tamanho, cor e opacidade) --- */
 .glow-orb {
     position: absolute;
