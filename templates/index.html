@@ -18,11 +18,7 @@
         <!-- ÍCONE NO TOPO DO CARD -->
         <div class="top-icon-wrapper">
             <div class="top-icon-circle">
-           <div style="display: flex; justify-content: center; margin-bottom: 15px;">
-   <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Mestre das Ofertas" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #0056b3; box-shadow: 0 0 20px rgba(7, 4, 170, 0.4);">
-</div>
-</div>
+                <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Mestre das Ofertas" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff;">
             </div>
         </div>
 
@@ -35,7 +31,7 @@
         <h1 class="title">Ofertas & Cupons Exclusivos</h1>
         <p class="subtitle">Economize diariamente em compras online. Receba cupons limitados e promoções diretamente no WhatsApp.</p>
 
-        <!-- SEÇÃO DE MARCAS (MERCADO LIVRE, AMAZON, SHOPEE) LOGO ACIMA DO CRONÔMETRO -->
+        <!-- SEÇÃO DE MARCAS (MERCADO LIVRE, AMAZON, SHOPEE) -->
         <div class="brands-wrapper">
             <div class="brands-container">
                 <div class="brand-item" title="Mercado Livre">
@@ -98,7 +94,77 @@
         </div>
     </div>
 
-    <!-- SCRIPT DO CRONÔMETRO E REGISTRO DE CLIQUES (INTACTO) -->
+    <!-- SEÇÃO DE PRODUTOS EM DESTAQUE (VITRINE DE OFERTAS) -->
+    <div class="ofertas-destaque-container">
+        <h3 class="ofertas-titulo"><i class="fa-solid fa-fire"></i> Achados do Dia no Grupo</h3>
+
+        <!-- Fone de Ouvido -->
+        <div class="card-produto-vitrine">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=150" alt="Fone Bluetooth" class="img-produto">
+            <div class="info-produto">
+                <div class="nome-produto">Fone de Ouvido Headphone Bluetooth P9 / Basike</div>
+                <div class="precos-container">
+                    <span class="preco-antigo-vitrine">R$ 119,90</span>
+                    <span class="preco-novo-vitrine">R$ 59,90</span>
+                </div>
+                <button onclick="registrarClique()" class="btn-pegar-oferta">Ver no Grupo <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Roupa Fitness -->
+        <div class="card-produto-vitrine">
+            <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=150" alt="Roupa Fitness" class="img-produto">
+            <div class="info-produto">
+                <div class="nome-produto">Kit Conjunto Fitness Legging + Top Academia</div>
+                <div class="precos-container">
+                    <span class="preco-antigo-vitrine">R$ 99,90</span>
+                    <span class="preco-novo-vitrine">R$ 49,90</span>
+                </div>
+                <button onclick="registrarClique()" class="btn-pegar-oferta">Ver no Grupo <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Acessórios de Natal -->
+        <div class="card-produto-vitrine">
+            <img src="https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=150" alt="Decoração de Natal" class="img-produto">
+            <div class="info-produto">
+                <div class="nome-produto">Cascata de LED Pisca-Pisca 100 Lâmpadas Natal</div>
+                <div class="precos-container">
+                    <span class="preco-antigo-vitrine">R$ 49,90</span>
+                    <span class="preco-novo-vitrine">R$ 19,90</span>
+                </div>
+                <button onclick="registrarClique()" class="btn-pegar-oferta">Ver no Grupo <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Outro Fone de Ouvido (TWS) -->
+        <div class="card-produto-vitrine">
+            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=150" alt="Fone TWS" class="img-produto">
+            <div class="info-produto">
+                <div class="nome-produto">Fone de Ouvido Bluetooth Sem Fio i12 / Lenovo</div>
+                <div class="precos-container">
+                    <span class="preco-antigo-vitrine">R$ 79,90</span>
+                    <span class="preco-novo-vitrine">R$ 27,90</span>
+                </div>
+                <button onclick="registrarClique()" class="btn-pegar-oferta">Ver no Grupo <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Outro Conjunto Fitness -->
+        <div class="card-produto-vitrine">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=150" alt="Moda Fitness" class="img-produto">
+            <div class="info-produto">
+                <div class="nome-produto">Short Elastano Academia / Corrida Masculino e Feminino</div>
+                <div class="precos-container">
+                    <span class="preco-antigo-vitrine">R$ 59,90</span>
+                    <span class="preco-novo-vitrine">R$ 24,90</span>
+                </div>
+                <button onclick="registrarClique()" class="btn-pegar-oferta">Ver no Grupo <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DO CRONÔMETRO E REGISTRO DE CLIQUES -->
     <script>
         let tempoTotal = 2 * 3600 + 14 * 60 + 59;
         const timerElement = document.getElementById("countdown");
