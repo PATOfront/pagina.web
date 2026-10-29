@@ -394,3 +394,36 @@ body {
     background: #007bff;
     color: #ffffff;
 }
+
+/* ESTILO DO CONTADOR DE PESSOAS ONLINE */
+.online-counter-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.online-counter-box i {
+    color: #10b981;
+    font-size: 12px;
+    animation: pulsar-verde 2s infinite;
+}
+
+.online-counter-box strong {
+    color: #10b981;
+    font-weight: 700;
+}
+
+@keyframes pulsar-verde {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
