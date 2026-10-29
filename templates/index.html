@@ -55,6 +55,12 @@
         <div class="countdown-box">
             <span class="countdown-label"><i class="fa-solid fa-clock"></i> Vagas promocionais encerram em:</span>
             <div id="countdown" class="countdown-timer">02:14:59</div>
+
+            <!-- CONTADOR DE PESSOAS ONLINE -->
+            <div class="online-counter-box" style="margin-top: 10px; margin-bottom: 0;">
+                <i class="fa-solid fa-circle"></i>
+                <span><strong id="contador-pessoas">142</strong> Pessoas entraram nas últimas 24 horas</span>
+            </div>
         </div>
 
         <!-- LISTA DE BENEFÍCIOS -->
@@ -164,7 +170,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT DO CRONÔMETRO E REGISTRO DE CLIQUES -->
+    <!-- SCRIPT DO CRONÔMETRO, CONTADOR E REGISTRO DE CLIQUES -->
     <script>
         let tempoTotal = 2 * 3600 + 14 * 60 + 59;
         const timerElement = document.getElementById("countdown");
@@ -177,18 +183,37 @@
             let minutos = Math.floor((tempoTotal % 3600) / 60);
             let segundos = tempoTotal % 60;
 
-            timerElement.textContent = 
-                String(horas).padStart(2, '0') + ":" + 
-                String(minutos).padStart(2, '0') + ":" + 
-                String(segundos).padStart(2, '0');
+            if (timerElement) {
+                timerElement.textContent = 
+                    String(horas).padStart(2, '0') + ":" + 
+                    String(minutos).padStart(2, '0') + ":" + 
+                    String(segundos).padStart(2, '0');
+            }
         }, 1000);
 
         function registrarClique() {
-            console.log("Registrando clique no banco SQLite...");
+            console.log("A abrir página de transição / obrigado...");
             setTimeout(function() {
-                window.location.href = "/registrar-clique";
+                window.location.href = "/redirecionar";
             }, 300);
         }
+
+        let totalPessoas = 142;
+        const contadorElemento = document.getElementById("contador-pessoas");
+
+        setInterval(function() {
+            let variacao = Math.random();
+            
+            if (variacao > 0.10) {
+                totalPessoas += Math.floor(Math.random() * 2) + 1;
+            } else if (variacao < 0.5 && totalPessoas > 120) {
+                totalPessoas -= 1;
+            }
+
+            if (contadorElemento) {
+                contadorElemento.textContent = totalPessoas;
+            }
+        }, 3000);
     </script>
 </body>
 </html>
