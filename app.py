@@ -30,6 +30,31 @@ def index():
   return render_template("index.html")
 
 
+# Nova rota de transição (Obrigado / Redirecionando)
+@app.route("/redirecionar")
+def redirecionar():
+  data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+  db_path = os.path.join(basedir, "cliques.db")
+  conn = sqlite3.connect(db_path)
+  cursor = conn.cursor()
+  cursor.execute("INSERT INTO cliques (data_hora) VALUES (?)", (data_hora,))
+  conn.commit()
+
+  cursor.execute("SELECT COUNT(*) FROM cliques")
+  total = cursor.fetchone()[0]
+  conn.close()
+
+  print(
+      f"\n >>> [SUCESSO] Clique salvo! Total de cliques no banco: {total} em"
+      f" {data_hora} <<<\n"
+  )
+
+  link_whatsapp = "https://chat.whatsapp.com/BlfLXEyAKUK4Ki9TiDw8JR"
+  return render_template("obrigado.html", link_whatsapp=link_whatsapp)
+
+
+# Mantida caso queira redirecionamento direto antigo
 @app.route("/registrar-clique")
 def registrar_clique():
   data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -49,7 +74,6 @@ def registrar_clique():
       f" {data_hora} <<<\n"
   )
 
-  # Substitua pelo link real do seu grupo do WhatsApp quando estiver pronto
   link_whatsapp = "https://chat.whatsapp.com/BlfLXEyAKUK4Ki9TiDw8JR"
   return redirect(link_whatsapp)
 
