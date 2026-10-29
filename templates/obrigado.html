@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando para o WhatsApp...</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- LUZES DE FUNDO (ORBES) -->
+    <div class="glow-orb orb-blue-1"></div>
+    <div class="glow-orb orb-blue-2"></div>
+    <div class="glow-orb orb-blue-3"></div>
+
+    <div class="card-container" style="text-align: center; padding: 40px 20px;">
+        <!-- ÍCONE DE SUCESSO -->
+        <div class="top-icon-wrapper">
+            <div class="top-icon-circle" style="background: #25d366; box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);">
+                <i class="fa-solid fa-check" style="font-size: 28px; color: #ffffff;"></i>
+            </div>
+        </div>
+
+        <h1 class="title" style="margin-top: 15px;">Tudo Pronto!</h1>
+        <p class="subtitle" style="margin-bottom: 25px;">
+            A sua vaga foi registada com sucesso.<br>Estamos a redirecioná-lo para o grupo VIP do WhatsApp...
+        </p>
+
+        <!-- SPINNER DE CARREGAMENTO MODERNIZADO -->
+        <div style="margin: 30px 0;">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size: 32px; color: #38bdf8;"></i>
+        </div>
+
+        <p style="font-size: 12px; color: #64748b;">
+            Caso não abra automaticamente, <a href="https://chat.whatsapp.com/BlfLXEyAKUK4Ki9TiDw8JR" style="color: #38bdf8; text-decoration: underline;">clique aqui</a>.
+        </p>
+    </div>
+
+    <!-- SCRIPT DE REDIRECIOMENTO AUTOMÁTICO (ex: após 2.5 segundos) -->
+    <script>
+        const linkDestino = "https://chat.whatsapp.com/BlfLXEyAKUK4Ki9TiDw8JR";
+        
+        setTimeout(function() {
+            window.location.href = linkDestino;
+        }, 2500);
+    </script>
+</body>
+</html>
