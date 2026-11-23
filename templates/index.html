@@ -11,168 +11,163 @@
 </head>
 <body>
 
+    <header class="topbar">
+    <div class="topbar-inner">
+        <a href="/" class="brand-link">
+            <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Mestre das Ofertas" class="brand-avatar">
+            <span class="brand-name">Mestre das Ofertas</span>
+        </a>
+
+        <button type="button" onclick="registrarClique()" class="btn-header-grupo">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Entrar no grupo</span>
+        </button>
+    </div>
+</header>
+
     <!-- LUZES DE FUNDO COM 3 ORBES UNIFICADAS -->
     <div class="glow-orb orb-blue-1"></div>
     <div class="glow-orb orb-blue-2"></div>
     <div class="glow-orb orb-blue-3"></div>
 
-    <div class="card-container">
-        <!-- ÍCONE NO TOPO DO CARD -->
-        <div class="top-icon-wrapper">
-            <div class="top-icon-circle">
-                <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Mestre das Ofertas" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff;">
+    <div class="main-wrapper" style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 980px; position: relative; z-index: 1;">
+        <!-- SEÇÃO DE CARROSSEL DINÂMICO EM DESTAQUE -->
+        <div class="ofertas-destaque-container">
+            <h3 class="ofertas-titulo"></i> MONITORAMENTO DE OFERTAS 100% GRATUITO </h3>
+
+            <div class="carrossel-track-container" id="carrosselAuto">
+                <div class="carrossel-items" id="trackItems">
+                    <!-- Bloco Original -->
+                    {% for p in produtos %}
+                    <div class="card-produto-vitrine">
+                        <img src="{{ p.imagem_url }}" alt="{{ p.titulo }}" class="img-produto">
+                        <div class="info-produto">
+                            <div class="nome-produto">{{ p.titulo }}</div>
+                            <div class="precos-container">
+                                <span class="preco-antigo-vitrine">{{ p.preco_antigo }}</span>
+                                <span class="preco-novo-vitrine">{{ p.preco_novo }}</span>
+                            </div>
+                            <button onclick="registrarClique()" class="btn-pegar-oferta">Entrar no Grupo <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Bloco Duplicado para Loop Infinito -->
+                    {% for p in produtos %}
+                    <div class="card-produto-vitrine">
+                        <img src="{{ p.imagem_url }}" alt="{{ p.titulo }}" class="img-produto">
+                        <div class="info-produto">
+                            <div class="nome-produto">{{ p.titulo }}</div>
+                            <div class="precos-container">
+                                <span class="preco-antigo-vitrine">{{ p.preco_antigo }}</span>
+                                <span class="preco-novo-vitrine">{{ p.preco_novo }}</span>
+                            </div>
+                            <button onclick="registrarClique()" class="btn-pegar-oferta">Entrar no Grupo <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Indicadores Visuais (Dots) -->
+            <div class="carrossel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
             </div>
         </div>
 
-        <!-- BADGE VERMELHA -->
-        <div class="badge">
-            <i class="fa-solid fa-volume-xmark"></i> DEIXE O GRUPO NO SILENCIOSO
-        </div>
-
-        <!-- TÍTULO E SUBTÍTULO -->
-        <h1 class="title">Ofertas & Cupons Exclusivos</h1>
-        <p class="subtitle">Economize diariamente em compras online. Receba cupons limitados e promoções diretamente no WhatsApp.</p>
-
-        <!-- SEÇÃO DE MARCAS (MERCADO LIVRE, AMAZON, SHOPEE) -->
-        <div class="brands-wrapper">
-            <div class="brands-container">
-                <div class="brand-item" title="Mercado Livre">
-                    <i class="fa-solid fa-handshake ml-icon"></i>
-                    <span>Mercado Livre</span>
-                </div>
-                <span class="divider">|</span>
-                <div class="brand-item" title="Amazon">
-                    <i class="fa-brands fa-amazon amazon-icon"></i>
-                    <span>Amazon</span>
-                </div>
-                <span class="divider">|</span>
-                <div class="brand-item" title="Shopee">
-                    <i class="fa-solid fa-bag-shopping shopee-icon"></i>
-                    <span>Shopee</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- CRONÔMETRO REGRESSIVO INTEGRADO -->
-        <div class="countdown-box">
-            <span class="countdown-label"><i class="fa-solid fa-clock"></i> Vagas promocionais encerram em:</span>
-            <div id="countdown" class="countdown-timer">02:14:59</div>
-
-            <!-- CONTADOR DE PESSOAS ONLINE -->
-            <div class="online-counter-box" style="margin-top: 10px; margin-bottom: 0;">
-                <i class="fa-solid fa-circle"></i>
-                <span><strong id="contador-pessoas">142</strong> Pessoas entraram nas últimas 24 horas</span>
-            </div>
-        </div>
-
-        <!-- LISTA DE BENEFÍCIOS -->
-        <div class="benefits-list">
-            <div class="benefit-item">
-                <i class="fa-solid fa-volume-xmark icon"></i>
-                <div>
-                    <strong>Sem Notificação Desnecessária</strong>
-                    <p>Apenas os administradores podem enviar links de ofertas.</p>
-                </div>
-            </div>
-
-            <div class="benefit-item">
-                <i class="fa-solid fa-bolt icon"></i>
-                <div>
-                    <strong>Promoções e ofertas de Curta Duração</strong>
-                    <p>Pegue as ofertas antes que o estoque esgote.</p>
-                </div>
-            </div>
-
-            <div class="benefit-item">
-                <i class="fa-solid fa-shield-halved icon"></i>
-                <div>
-                    <strong>Links 100% Seguros</strong>
-                    <p>Todas as lojas oficiais (Amazon, Mercado Livre, Shopee).</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- BOTÃO COM INTEGRAÇÃO SQLITE -->
-        <button onclick="registrarClique()" class="btn-whatsapp">
+        <!-- BOTÃO PRINCIPAL LOGO ABAIXO DO CARROSSEL -->
+        <button onclick="registrarClique()" class="btn-whatsapp btn-whatsapp-carrossel">
             <i class="fa-brands fa-whatsapp"></i> ENTRAR NO GRUPO
         </button>
 
-        <div class="footer-info">
-            <p><i class="fa-solid fa-lock"></i> Canal oficial e gratuito</p>
+        <!-- BLOCO PRINCIPAL SOLTO (LAYOUT AMPLO) -->
+        <div class="card-container">
+            <!-- ÍCONE NO TOPO -->
+            <div class="top-icon-wrapper">
+                <div class="top-icon-circle">
+                    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Mestre das Ofertas" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff;">
+                </div>
+            </div>
+
+            <!-- BADGE VERMELHA -->
+            <div class="badge">
+                <i class="fa-solid fa-volume-xmark"></i> DEIXE O GRUPO NO SILENCIOSO
+            </div>
+
+            <!-- TÍTULO E SUBTÍTULO -->
+            <h1 class="title">Ofertas & Cupons Exclusivos</h1>
+            <p class="subtitle">Economize diariamente em compras online. Receba cupons limitados e promoções diretamente no WhatsApp.</p>
+
+            <!-- SEÇÃO DE MARCAS (MERCADO LIVRE, AMAZON, SHOPEE) -->
+            <div class="brands-wrapper">
+                <div class="brands-container">
+                    <div class="brand-item" title="Mercado Livre">
+                        <i class="fa-solid fa-handshake ml-icon"></i>
+                        <span>Mercado Livre</span>
+                    </div>
+                    <span class="divider">|</span>
+                    <div class="brand-item" title="Amazon">
+                        <i class="fa-brands fa-amazon amazon-icon"></i>
+                        <span>Amazon</span>
+                    </div>
+                    <span class="divider">|</span>
+                    <div class="brand-item" title="Shopee">
+                        <i class="fa-solid fa-bag-shopping shopee-icon"></i>
+                        <span>Shopee</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CRONÔMETRO REGRESSIVO INTEGRADO -->
+            <div class="countdown-box">
+                <span class="countdown-label"><i class="fa-solid fa-clock"></i> Vagas promocionais encerram em:</span>
+                <div id="countdown" class="countdown-timer">02:14:59</div>
+
+                <!-- CONTADOR DE PESSOAS ONLINE -->
+                <div class="online-counter-box" style="margin-top: 10px; margin-bottom: 0;">
+                    <i class="fa-solid fa-circle"></i>
+                    <span><strong id="contador-pessoas">142</strong> Pessoas entraram nas últimas 24 horas</span>
+                </div>
+            </div>
+
+            <!-- LISTA DE BENEFÍCIOS EM GRADE -->
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <i class="fa-solid fa-volume-xmark icon"></i>
+                    <div>
+                        <strong>Sem Notificação Desnecessária</strong>
+                        <p>Apenas os administradores podem enviar links de ofertas.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <i class="fa-solid fa-bolt icon"></i>
+                    <div>
+                        <strong>Promoções e ofertas de Curta Duração</strong>
+                        <p>Pegue as ofertas antes que o estoque esgote.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item benefit-item-full">
+                    <i class="fa-solid fa-shield-halved icon"></i>
+                    <div>
+                        <strong>Links 100% Seguros</strong>
+                        <p>Todas as lojas oficiais (Amazon, Mercado Livre, Shopee).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <p><i class="fa-solid fa-lock"></i> Canal oficial e gratuito</p>
+            </div>
         </div>
+
     </div>
 
-    <!-- SEÇÃO DE PRODUTOS EM DESTAQUE (VITRINE DE OFERTAS) -->
-    <div class="ofertas-destaque-container">
-        <h3 class="ofertas-titulo"><i class="fa-solid fa-fire"></i> Ofertas do Dia no Grupo </h3>
-
-        <!-- Fone de Ouvido -->
-        <div class="card-produto-vitrine">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=150" alt="Fone Bluetooth" class="img-produto">
-            <div class="info-produto">
-                <div class="nome-produto">Fone de Ouvido Headphone Bluetooth P9 / Basike</div>
-                <div class="precos-container">
-                    <span class="preco-antigo-vitrine">R$ 119,90</span>
-                    <span class="preco-novo-vitrine">R$ 59,90</span>
-                </div>
-                <button onclick="registrarClique()" class="btn-pegar-oferta">Acessar Grupo <i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        </div>
-
-        <!-- Roupa Fitness -->
-        <div class="card-produto-vitrine">
-            <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=150" alt="Roupa Fitness" class="img-produto">
-            <div class="info-produto">
-                <div class="nome-produto">Kit Conjunto Fitness Legging + Top Academia</div>
-                <div class="precos-container">
-                    <span class="preco-antigo-vitrine">R$ 99,90</span>
-                    <span class="preco-novo-vitrine">R$ 49,90</span>
-                </div>
-                <button onclick="registrarClique()" class="btn-pegar-oferta">Acessar Grupo <i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        </div>
-
-        <!-- Acessórios de Natal -->
-        <div class="card-produto-vitrine">
-            <img src="https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=150" alt="Decoração de Natal" class="img-produto">
-            <div class="info-produto">
-                <div class="nome-produto">Cascata de LED Pisca-Pisca 100 Lâmpadas Natal</div>
-                <div class="precos-container">
-                    <span class="preco-antigo-vitrine">R$ 49,90</span>
-                    <span class="preco-novo-vitrine">R$ 19,90</span>
-                </div>
-                <button onclick="registrarClique()" class="btn-pegar-oferta">Acessar Grupo <i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        </div>
-
-        <!-- Outro Fone de Ouvido (TWS) -->
-        <div class="card-produto-vitrine">
-            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=150" alt="Fone TWS" class="img-produto">
-            <div class="info-produto">
-                <div class="nome-produto">Fone de Ouvido Bluetooth Sem Fio i12 / Lenovo</div>
-                <div class="precos-container">
-                    <span class="preco-antigo-vitrine">R$ 79,90</span>
-                    <span class="preco-novo-vitrine">R$ 27,90</span>
-                </div>
-                <button onclick="registrarClique()" class="btn-pegar-oferta">Acessar Grupo <i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        </div>
-
-        <!-- Outro Conjunto Fitness -->
-        <div class="card-produto-vitrine">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=150" alt="Moda Fitness" class="img-produto">
-            <div class="info-produto">
-                <div class="nome-produto">Short Elastano Academia / Corrida Masculino e Feminino</div>
-                <div class="precos-container">
-                    <span class="preco-antigo-vitrine">R$ 59,90</span>
-                    <span class="preco-novo-vitrine">R$ 24,90</span>
-                </div>
-                <button onclick="registrarClique()" class="btn-pegar-oferta">Acessar Grupo <i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCRIPT DO CRONÔMETRO, CONTADOR E REGISTRO DE CLIQUES -->
+    <!-- SCRIPT DO CRONÔMETRO, CONTADOR, REGISTRO DE CLIQUES E AUTO-SCROLL INTERATIVO -->
     <script>
         let tempoTotal = 2 * 3600 + 14 * 60 + 59;
         const timerElement = document.getElementById("countdown");
@@ -216,6 +211,86 @@
                 contadorElemento.textContent = totalPessoas;
             }
         }, 3000);
+
+        // MOTOR DE AUTO-SCROLL CONTÍNUO COM DESTAQUE CENTRAL, DOTS E TOQUE
+        const container = document.getElementById('carrosselAuto');
+        const track = document.getElementById('trackItems');
+        const cards = track ? Array.from(track.querySelectorAll('.card-produto-vitrine')) : [];
+        const dots = document.querySelectorAll('.carrossel-dots .dot');
+        let autoScrollTimer;
+        let userInteracting = false;
+
+        function atualizarDestaqueCentral() {
+            if (!container || cards.length === 0) return;
+
+            const rectContainer = container.getBoundingClientRect();
+            const centroContainer = rectContainer.left + (rectContainer.width / 2);
+
+            let cardMaisProximo = null;
+            let menorDistancia = Infinity;
+
+            cards.forEach((card) => {
+                const rectCard = card.getBoundingClientRect();
+                const centroCard = rectCard.left + (rectCard.width / 2);
+                const distancia = Math.abs(centroContainer - centroCard);
+
+                if (distancia < menorDistancia) {
+                    menorDistancia = distancia;
+                    cardMaisProximo = card;
+                }
+            });
+
+            cards.forEach((card) => {
+                card.classList.toggle('is-center', card === cardMaisProximo);
+            });
+        }
+
+        function atualizarDots() {
+            if (!container || !track || dots.length === 0) return;
+
+            const metadeLargura = track.scrollWidth / 2;
+            if (metadeLargura <= 0) return;
+
+            const posicaoNoCiclo = container.scrollLeft % metadeLargura;
+            const progresso = posicaoNoCiclo / metadeLargura;
+            const indiceAtivo = Math.min(
+                dots.length - 1,
+                Math.floor(progresso * dots.length)
+            );
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === indiceAtivo);
+            });
+        }
+
+        function aoRolarCarrossel() {
+            atualizarDestaqueCentral();
+            atualizarDots();
+        }
+
+        function iniciarAutoScroll() {
+            autoScrollTimer = setInterval(() => {
+                if (!userInteracting && container && track) {
+                    container.scrollLeft += 1;
+                    if (container.scrollLeft >= (track.scrollWidth / 2)) {
+                        container.scrollLeft = 0;
+                    }
+                    aoRolarCarrossel();
+                }
+            }, 30);
+        }
+
+        if (container) {
+            container.addEventListener('scroll', aoRolarCarrossel, { passive: true });
+            window.addEventListener('resize', atualizarDestaqueCentral, { passive: true });
+            container.addEventListener('mousedown', () => { userInteracting = true; });
+            container.addEventListener('mouseup', () => { setTimeout(() => { userInteracting = false; }, 2000); });
+            container.addEventListener('touchstart', () => { userInteracting = true; }, { passive: true });
+            container.addEventListener('touchend', () => { setTimeout(() => { userInteracting = false; }, 2500); }, { passive: true });
+
+            aoRolarCarrossel();
+            iniciarAutoScroll();
+        }
     </script>
 </body>
 </html>
