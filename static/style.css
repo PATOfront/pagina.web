@@ -7,7 +7,7 @@
 
 html, body {
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     background-color: #0b111e;
 }
 
@@ -16,10 +16,22 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Impede que o telemóvel puxe a tela para cima */
-    align-items: center;
-    padding: 40px 16px;
+    align-items: stretch;
+    padding: 0 0 40px 0;
     position: relative;
     perspective: 1000px;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 24px 0 0 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* --- ORBES AZUIS UNIFICADAS (Mesmo tamanho, cor e opacidade) --- */
@@ -76,19 +88,20 @@ body {
     100% { transform: translate(0, 0) scale(1); }
 }
 
-/* --- ESTILOS DO CARD --- */
+/* --- BLOCO PRINCIPAL SOLTO E AMPLO --- */
 .card-container {
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 32px 24px 24px 24px;
-    max-width: 380px;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    padding: 16px 16px 28px 16px;
+    max-width: 720px;
     width: 100%;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    box-shadow: none;
     text-align: center;
     position: relative;
     z-index: 1;
+    margin: 8px auto 0 auto;
 }
 
 .top-icon-wrapper {
@@ -125,30 +138,33 @@ body {
 
 .title {
     color: #ffffff;
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 800;
     line-height: 1.3;
-    margin-bottom: 10px;
+    max-width: 540px;
+    margin: 0 auto 10px auto;
 }
 
 .subtitle {
     color: #94a3b8;
-    font-size: 12px;
+    font-size: 13.5px;
     line-height: 1.5;
-    margin-bottom: 16px;
+    max-width: 520px;
+    margin: 0 auto 20px auto;
     padding: 0 6px;
 }
 
 /* --- CÁPSULA DE MARCAS --- */
 .brands-wrapper {
-    margin-bottom: 18px;
+    max-width: 440px;
+    margin: 0 auto 22px auto;
 }
 
 .brands-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(15, 23, 42, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 50px;
     padding: 12px 18px;
@@ -186,11 +202,12 @@ body {
 
 /* CRONÔMETRO */
 .countdown-box {
-    background: rgba(0, 140, 255, 0.08);
-    border: 1px solid rgba(0, 140, 255, 0.2);
-    border-radius: 12px;
-    padding: 10px;
-    margin-bottom: 18px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(0, 140, 255, 0.25);
+    border-radius: 14px;
+    padding: 14px 16px;
+    max-width: 520px;
+    margin: 0 auto 24px auto;
     text-align: center;
 }
 
@@ -213,23 +230,24 @@ body {
     font-family: monospace;
 }
 
-/* BENEFÍCIOS */
+/* BENEFÍCIOS EM GRADE */
 .benefits-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 680px;
+    margin: 0 auto 26px auto;
     text-align: left;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .benefit-item {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    background-color: rgba(30, 41, 59, 0.6);
-    padding: 12px 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    background-color: rgba(15, 23, 42, 0.85);
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .benefit-item .icon {
@@ -248,9 +266,9 @@ body {
 }
 
 .benefit-item p {
-    color: #64748b;
-    font-size: 11px;
-    line-height: 1.3;
+    color: #94a3b8;
+    font-size: 11.5px;
+    line-height: 1.35;
 }
 
 /* BOTÃO WHATSAPP */
@@ -268,6 +286,8 @@ body {
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
     transition: all 0.2s ease;
     width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
     cursor: pointer;
     border: none;
 }
@@ -278,6 +298,12 @@ body {
     box-shadow: 0 8px 24px rgba(0, 123, 255, 0.5);
 }
 
+.btn-whatsapp-carrossel {
+    margin: 4px auto 24px auto;
+    position: relative;
+    z-index: 2;
+}
+
 .btn-whatsapp i {
     font-size: 18px;
 }
@@ -286,113 +312,7 @@ body {
 .footer-info {
     margin-top: 14px;
     font-size: 11px;
-    color: #475569;
-}
-
-/* --- SEÇÃO DE OFERTAS EM DESTAQUE --- */
-.ofertas-destaque-container {
-    width: 100%;
-    max-width: 380px;
-    margin-top: 20px;
-    z-index: 1;
-    position: relative;
-}
-
-.ofertas-titulo {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.ofertas-titulo i {
-    color: #38bdf8;
-}
-
-.card-produto-vitrine {
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 14px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-align: left;
-    transition: all 0.2s ease;
-}
-
-.card-produto-vitrine:hover {
-    border-color: rgba(56, 189, 248, 0.4);
-    transform: translateY(-2px);
-}
-
-.img-produto {
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
-    object-fit: cover;
-    background: #1e293b;
-    flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.info-produto {
-    flex-grow: 1;
-}
-
-.nome-produto {
-    color: #f1f5f9;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 6px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-}
-
-.precos-container {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 8px;
-}
-
-.preco-antigo-vitrine {
     color: #64748b;
-    font-size: 10px;
-    text-decoration: line-through;
-}
-
-.preco-novo-vitrine {
-    color: #38bdf8;
-    font-size: 14px;
-    font-weight: 800;
-}
-
-.btn-pegar-oferta {
-    display: inline-block;
-    background: rgba(0, 123, 255, 0.15);
-    color: #38bdf8;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    border: 1px solid rgba(0, 123, 255, 0.3);
-    transition: all 0.2s ease;
-}
-
-.btn-pegar-oferta:hover {
-    background: #007bff;
-    color: #ffffff;
 }
 
 /* ESTILO DO CONTADOR DE PESSOAS ONLINE */
@@ -426,4 +346,290 @@ body {
     0% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.4; transform: scale(0.9); }
     100% { opacity: 1; transform: scale(1); }
+}
+
+/* --- CARROSSEL DE LATERAL A LATERAL --- */
+.ofertas-destaque-container {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-bottom: 24px;
+    z-index: 1;
+    position: relative;
+}
+
+.ofertas-titulo {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+}
+
+.ofertas-titulo i {
+    color: #38bdf8;
+}
+
+.carrossel-track-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    padding: 18px 16px;
+}
+
+.carrossel-track-container:active {
+    cursor: grabbing;
+}
+
+.carrossel-track-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carrossel-items {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    align-items: center;
+}
+
+.card-produto-vitrine {
+    width: 215px;
+    min-width: 215px;
+    max-width: 215px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 13px;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    opacity: 0.95;
+    transform: scale(0.98);
+    transition: transform 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
+    box-shadow: none;
+    flex-shrink: 0;
+}
+
+.card-produto-vitrine.is-center {
+    opacity: 1;
+    transform: scale(1.02);
+    background: #0f172a;
+    border: 1.5px solid rgba(56, 189, 248, 0.85);
+    box-shadow: none;
+}
+
+.img-produto {
+    width: 100%;
+    height: 155px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #1e293b;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.info-produto {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.nome-produto {
+    color: #f1f5f9;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    min-height: 32px;
+}
+
+.precos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 10px;
+}
+
+.preco-antigo-vitrine {
+    color: #94a3b8;
+    font-size: 10.5px;
+    text-decoration: line-through;
+}
+
+.preco-novo-vitrine {
+    color: #38bdf8;
+    font-size: 14.5px;
+    font-weight: 800;
+}
+
+.btn-pegar-oferta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #007bff;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 9px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    margin-top: auto;
+}
+
+.btn-pegar-oferta:hover {
+    background: #0056b3;
+}
+
+.carrossel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 18px;
+    border-radius: 4px;
+    background: #38bdf8;
+}
+
+@media (min-width: 641px) {
+    .benefit-item-full {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 640px) {
+    .title {
+        font-size: 21px;
+    }
+
+    .benefits-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .carrossel-track-container {
+        padding: 14px 12px;
+    }
+
+    .card-produto-vitrine,
+    .card-produto-vitrine.is-center {
+        width: 195px;
+        min-width: 195px;
+        max-width: 195px;
+        transform: none;
+        opacity: 1;
+    }
+
+    .card-produto-vitrine.is-center {
+        background: #0f172a;
+        border: 1.5px solid rgba(56, 189, 248, 0.85);
+        box-shadow: none;
+    }
+}
+
+/* --- BARRA SUPERIOR --- */
+.topbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    background: rgba(11, 17, 30, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.topbar-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+}
+
+.brand-name {
+    color: #f8fafc;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.btn-header-grupo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #007bff;
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-header-grupo:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+    .topbar-inner {
+        padding: 10px 14px;
+    }
+
+    .brand-name {
+        font-size: 14px;
+    }
+
+    .btn-header-grupo {
+        padding: 8px 14px;
+        font-size: 12.5px;
+    }
 }
